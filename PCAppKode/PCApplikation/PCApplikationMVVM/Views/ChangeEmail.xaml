@@ -1,0 +1,32 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk = "http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:properties="clr-namespace:PCApplikationMVVM.Properties"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="PCApplikationMVVM.Views.ChangeEmail"
+        Title="Ændre Email" Width="230" Height="140">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Email:" Grid.Column="0"/>
+            <xctk:AutoSelectTextBox Text="{Binding Email, Source={x:Static properties:Settings.Default}}" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Adgangskode:" Grid.Column="0"/>
+            <xctk:AutoSelectTextBox Text="{Binding EmailPassword, Source={x:Static properties:Settings.Default}}" Grid.Column="1"/>
+        </Grid>
+        <Button Grid.Row="2" Content="OK" Click="Button_Click" Margin="5,5,5,5"/>
+    </Grid>
+</Window>

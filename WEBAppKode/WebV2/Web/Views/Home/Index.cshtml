@@ -1,0 +1,46 @@
+@using Web.Models
+@model List<Web.Models.Component>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Message = "IHA Special Komponenter";
+    var viewDataCategories = ViewData["Categories"] as List<string>;
+    var viewDataAvailableQuantity = ViewData["AvailableQuantity"] as List<int>;
+    var viewDataNumberOfPages = ViewData["NumberOfPages"] as int?;
+    
+}
+
+<div class="container">
+    <div class="row row-offcanvas-left row-offcanvas">
+    
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas"  role="navigation">
+            <div class="list-group">
+                @foreach (var category in viewDataCategories)
+                {
+
+                    @Html.ActionLink(category, "Index", "Home", new { @class = "list-group-item", @href="?category=" + category })
+                }
+            </div> <!-- /list-group-->
+        </div> <!-- /span-->
+       <div class="col-xs-12 col-sm-9">
+            
+                @foreach (var item in Model)
+                {
+                    <div class="row ">
+                        <hr />
+                        <div class="col-md-3"><img src="@Html.DisplayFor(modelItem => item.Image)" class="img-responsive" /> </div>
+                        <div class="col-md-6">
+                            <h3>@Html.DisplayFor(modelItem => item.ComponentName) </h3>
+                            <p> @Html.DisplayFor(modelItem => item.ComponentInfo) </p>
+                            <h3>Antal Tilgængelige: @Html.DisplayFor(quantity =>viewDataAvailableQuantity[Model.IndexOf(item)])</h3>
+                           @* <p> @Model.Count</p> *@
+                        </div>
+                       @* <div class="col-md-3"> <button type="button" class="btn btn-success">Reserver &raquo;</button></div> *@
+
+                    </div><!--/row-->
+                }
+            </div><!--/span-->
+        
+    </div><!-- ./row-->
+</div>
+

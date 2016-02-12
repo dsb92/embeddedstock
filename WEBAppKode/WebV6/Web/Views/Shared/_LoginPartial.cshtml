@@ -1,0 +1,19 @@
+﻿@using System.Activities.Expressions
+@if (@Session["User"] != null)
+{
+    <text>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            
+            <p>Logget på som: </p>
+            <p>@Html.ActionLink(@Session["User"].ToString(), "Reserve", "Account")</p> 
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log af</a>
+        }
+    </text>
+}
+else
+{
+    @Html.ActionLink(" Log in", "Login", "Account",null , new { @class = "fa fa-user" })
+}
+

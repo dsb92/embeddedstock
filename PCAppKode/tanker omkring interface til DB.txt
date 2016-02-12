@@ -1,0 +1,10 @@
+Opstart:
+Tjekker for forbindelse og starter tråd der periodisk tjekker om vi har adgang (30 sek)?
+Loaded alle komponenter ind i MainViewModel
+
+CRUD:
+Kaldes de nødvendige funktioner alle steder i programmet
+Alle CRUD skal have fejltjek
+
+SKal brugeren kunne arbejde på programmet hvis forbindelsen til databasen ryger?
+Nej der skal komme en fejlmeddelelse og programmet logges ud.

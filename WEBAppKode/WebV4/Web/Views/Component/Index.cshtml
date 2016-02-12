@@ -1,0 +1,44 @@
+@model  Web.Models.Component
+
+@{
+    ViewBag.Title = "Test af Component";
+    var availablequantity = ViewData["AvailableQuantity"] as int?;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="@Html.DisplayFor(model => model.Image)" class="img-responsive"/>
+            <p>@Html.ActionLink("Tilbage", "Index", "Home")</p>
+        </div>
+        <div class="col-md-6">
+            <h3>@Html.DisplayFor(model => model.ComponentName) </h3>
+            <p>@Html.DisplayFor(model => model.ComponentInfo) </p>
+        </div>
+        <div class="col-md-3">
+            <p>Antal på lager: @Html.DisplayFor(quantity => availablequantity) </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Kommentar fra Brugere</h4>
+            <hr/>
+            @* @foreach (comment in usercomments ){
+                
+        @Html.DisplayFor(model => model.ComponentInfo)
+            <hr/>
+        }*@
+            
+            <p>Bruger navn og dato? <br/>@Html.DisplayFor(model => model.ComponentInfo)</p> 
+            <hr/>
+            <p>Bruger navn og dato? <br />@Html.DisplayFor(model => model.ComponentInfo)</p>
+            <hr />
+            <p>Bruger navn og dato? <br />@Html.DisplayFor(model => model.ComponentInfo)</p>
+            <hr />
+            
+        </div>
+        <div class="col-md-4">
+            <a href="@Html.DisplayFor(model => model.Datasheet)" target="_blank"> @Html.DisplayNameFor(model => model.Datasheet)</a>
+        </div>
+    </div>
+</div>

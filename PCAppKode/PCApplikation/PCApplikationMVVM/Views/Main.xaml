@@ -1,0 +1,297 @@
+<Window x:Class="PCApplikationMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:xctk ="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Embedded Stock"
+        Name="MainW"
+        WindowState="Maximized">
+	<DockPanel LastChildFill="True">
+		<StatusBar DockPanel.Dock="Bottom" Height="25">
+			<StatusBarItem Content="{Binding Source={StaticResource Locator}, Path=MainViewModel.StatusBarText}"/>
+			<ProgressBar Height="15" Width="200" Maximum="{Binding Source={StaticResource Locator}, Path=MainViewModel.MaxLoadbar}" 
+			Value="{Binding Source={StaticResource Locator}, Path=MainViewModel.LoadbarProgress}" Visibility="{Binding Source={StaticResource Locator},
+			Path=MainViewModel.LoadBarVisibility}"/>
+		</StatusBar>
+		
+		<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Menu Grid.Row="0" IsEnabled="{Binding LoggedIn}">
+				<MenuItem Header="Indstillinger">
+					<MenuItem Header="Unik komponenter" IsCheckable="True" IsChecked="{Binding UniqeChecked}"/>
+					<MenuItem Header="Ændre mail informationer" DataContext="{Binding Source={StaticResource Locator}}">
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<ei:CallMethodAction 
+                                    TargetObject="{Binding Path=MainViewModel}"
+                                    MethodName="ChangeEmail"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</MenuItem>
+				</MenuItem>
+			</Menu>
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.15*"/>
+					<ColumnDefinition Width="0.7*"/>
+				</Grid.ColumnDefinitions>
+
+				<Grid Grid.Column="0" Name="CategoryGrid" IsEnabled="{Binding LoggedIn}">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="0.1*"/>
+						<RowDefinition Height="0.9*"/>
+					</Grid.RowDefinitions>
+					<ListView SelectedIndex="{Binding Path=MainViewModel.CategoryIndex}" Grid.Row="1" Margin="0,0,5,0" DataContext="{Binding Source={StaticResource Locator}}" ItemsSource="{StaticResource Categories}" SelectedItem="{Binding Path=MainViewModel.SelectedCategory}">
+						<ListView.ContextMenu>
+							<ContextMenu>
+								<MenuItem Header="Omdøb Kategori">
+									<i:Interaction.Triggers>
+										<i:EventTrigger EventName="Click">
+											<ei:CallMethodAction 
+                                            TargetObject="{Binding Path=MainViewModel}"
+                                             MethodName="RenameCategory"/>
+										</i:EventTrigger>
+									</i:Interaction.Triggers>
+								</MenuItem>
+							</ContextMenu>
+						</ListView.ContextMenu>
+					</ListView>
+					<Image Grid.Row="0" Source="ihalogo.jpg"></Image>
+				</Grid>
+				<Grid Grid.Column="1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<Grid Grid.Row="0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Button Grid.Column="0" Content="Refresh" Margin="0,5,5,5" IsEnabled="{Binding LoggedIn}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                            TargetObject="{Binding}"
+                            MethodName="Refresh"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+						<Button Grid.Column="1" Content="Udlån komponent" Margin="5,5,5,5" DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}" IsEnabled="{Binding LoggedIn}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                            TargetObject="{Binding}"
+                            MethodName="LoansWindow"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+						<Button Grid.Column="2" Content="Aflever komponent" Margin="5,5,5,5" IsEnabled="{Binding LoggedIn}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                            TargetObject="{Binding}"
+                            MethodName="DeliverComponent"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+
+
+						<Button Grid.Column="3" Content="Tilføj komponent" Margin="5,5,5,5" DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}" IsEnabled="{Binding LoggedIn}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                            TargetObject="{Binding}"
+                            MethodName="CreateComponentWindow"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+						<Button Grid.Column="4" Content="Ændre komponent" Margin="5,5,5,5" IsEnabled="{Binding LoggedIn}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                                TargetObject="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
+                                MethodName="ChangeComponentWindow"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+						<Button Grid.Column="5" Content="Fjern komponent" Margin="5,5,5,5" IsEnabled="{Binding LoggedIn}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                            TargetObject="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
+                            MethodName="DeleteSelectedComponent"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+
+
+						<Button IsEnabled="{Binding LoggedOut}" Grid.Column="6" Content="Log ind" Margin="5,5,5,5"  DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                            TargetObject="{Binding}"
+                            MethodName="LogInWindow"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+
+						<Button Grid.Column="7" Content="Log ud" Margin="5,5,0,5" DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}" IsEnabled="{Binding LoggedIn}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                            TargetObject="{Binding}"
+                            MethodName="LogOut"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+					</Grid>
+					<Grid Grid.Row="1" IsEnabled="{Binding LoggedIn}">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0.9*"/>
+							<ColumnDefinition Width="0.1*"/>
+						</Grid.ColumnDefinitions>
+						<xctk:AutoSelectTextBox Grid.Column="0" Name="SearchTextBox" Text="{Binding SearchText}" Margin="0,0,0,0"  ToolTip="Hvis ord separeres med mellemrum betyder det 'eller'. Hvis ord separeres med + betyder det 'og'."
+											KeyDown="SearchTextBox_OnKeyDown_Search"/>
+						<Button Grid.Column="1" Content="Søg" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:CallMethodAction 
+                            TargetObject="{Binding}"
+                            MethodName="Search"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+					</Grid>
+
+					<Grid Name="ComponentGrid" Grid.Row="2" IsEnabled="{Binding LoggedIn}">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0.60*"/>
+							<ColumnDefinition Width="0.50*"/>
+						</Grid.ColumnDefinitions>
+						<DataGrid AutoGenerateColumns="False" Grid.Column="0" Name="ComponentDataGridUniqe" 
+                          Visibility="{Binding MainViewModel.FirstDataGrid}"
+                          DataContext="{Binding Source={StaticResource Locator}}"
+                          ItemsSource="{Binding MainViewModel.ComponentList, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                          SelectedItem="{Binding Path=MainViewModel.SelectedItem, Mode=TwoWay}"
+                          CanUserAddRows="False" CanUserDeleteRows="False"
+                          IsReadOnly="True"  SelectionChanged="ComponentDataGrid_OnSelectionChanged_AddToDeleteList" >
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="Name" Binding="{Binding ComponentName}" />
+								<DataGridTextColumn Header="Serie #" Binding="{Binding SerieNr}"/>
+								<DataGridTextColumn Header="Antal" Binding="{Binding AmountComponets}"/>
+								<DataGridTextColumn Header="Antal udlånte"  Binding="{Binding AmountLoaned}" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						<DataGrid AutoGenerateColumns="False" Grid.Column="0" Name="ComponentDataGrid" 
+                          Visibility="{Binding MainViewModel.SecondDataGrid}"
+                          DataContext="{Binding Source={StaticResource Locator}}"
+                          ItemsSource="{Binding MainViewModel.ComponentList, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                          SelectedItem="{Binding Path=MainViewModel.SelectedItem, Mode=TwoWay}"
+                          CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False"
+                          IsReadOnly="True"  SelectionChanged="ComponentDataGrid_OnSelectionChanged_AddToDeleteList">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="ID" Binding="{Binding ComponentID}"/>
+								<DataGridTextColumn Header="Navn" Binding="{Binding ComponentName}" />
+								<DataGridTextColumn Header="Serie #" Binding="{Binding SerieNr}"/>
+								<DataGridTextColumn Header="Komponent #" Binding="{Binding ComponentNumber}"/>
+								<DataGridTextColumn Header="Afleverings Dato" Binding="{Binding ActualLoanInformation.ReturnDateStringYearFirst}" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+							<Grid Name="ComponentHighlightedGrid" Margin="0,5,0,0" IsEnabled="{Binding LoggedIn}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="0.5*"/>
+									<ColumnDefinition Width="0.5*"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+								<Image Grid.Row="0" Grid.ColumnSpan="2" Name="ComponentImage" Height="200" 
+                                   Source="{Binding Source={StaticResource Locator},Path=MainViewModel.SelectedItem.RenderImage}" />
+
+								<Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Content="Låne Information" HorizontalAlignment="Center" FontWeight="ExtraBold"/>
+
+								<Label Grid.Column="0" Grid.Row="2" Content="Reserveret til:"/>
+								<xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="2" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path=MainViewModel.SelectedItem.ActualLoanInformation.ReservationID}"/>
+
+								<Label Grid.Column="0" Grid.Row="3" Content="Reservationsdato:"/>
+								<xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="3" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path=MainViewModel.SelectedItem.ActualLoanInformation.ReservationDateString}"/>
+
+								<Label Grid.Column="0" Grid.Row="4" Content="Afleveringsdato:"/>
+								<xctk:AutoSelectTextBox IsReadOnly="True" Grid.Column="1" Grid.Row="4" 
+													Text="{Binding Source={StaticResource Locator},Path=MainViewModel.SelectedItem.ActualLoanInformation.ReturnDateString}"/>
+
+								<Label Grid.Column="0" Grid.Row="5" Content="Udlånsdato:"/>
+								<xctk:AutoSelectTextBox IsReadOnly="True" Grid.Column="1" Grid.Row="5" Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.ActualLoanInformation.LoanDateString}"/>
+
+								<Label Grid.Column="0" Grid.Row="6" Content="Komponent udlånt til:"/>
+								<xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="6" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.ActualLoanInformation.OwnerID}"/>
+
+								<Label Grid.Column="0" Grid.Row="7" Content="Låners telefonnummer:"/>
+								<xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="7" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.ActualLoanInformation.MobilNr}"/>
+
+								<Label Grid.Column="0" Grid.Row="8" Content="Kommentar:"/>
+								<xctk:AutoSelectTextBox IsReadOnly="True" MinHeight="50" MaxHeight="100" Grid.Column="1" Grid.Row="8" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" 
+                                                    Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.AdminComment}"/>
+
+								<Label Grid.Column="0" Grid.Row="9" Content="Bruger kommentar:"/>
+								<xctk:AutoSelectTextBox MinHeight="50" Grid.Column="1" Grid.Row="9" IsReadOnly="True" VerticalScrollBarVisibility="Auto" 
+                                                    Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.UserComment}"/>
+
+								<Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10" Content="Komponent Information" HorizontalAlignment="Center" FontWeight="ExtraBold"/>
+
+								<Label Grid.Column="0" Grid.Row="11" Content="Komponent navn:"/>
+								<xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="11" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.ComponentName}"/>
+
+								<Label Grid.Column="0" Grid.Row="12" Content="Komponent kategori:"/>
+								<xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="12" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.Category}"/>
+
+								<Label Grid.Column="0" Grid.Row="13" Content="Komponent nummer:"/>
+								<xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="13" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.ComponentNumber}"/>
+
+								<Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="14" Content="Generel information om komponent:"/>
+								<xctk:AutoSelectTextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="15" MinHeight="100" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                                                    Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.ComponentInfo}"/>
+
+								<Label Grid.Column="0" Grid.Row="16" Content="Link til datablad:"/>
+								<xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="16" Name="DataSheet" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.Datasheet}"/>
+
+                                <Label Grid.Column="0" Grid.Row="17" Content="Link til producent:"/>
+                                <xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="17" Name="Manufacturer" IsReadOnly="True" Text="{Binding Source={StaticResource Locator},Path= MainViewModel.SelectedItem.ManufacturerLink}"/>
+                            </Grid>
+						</ScrollViewer>
+					</Grid>
+				</Grid>
+			</Grid>
+		</Grid>
+	</DockPanel>
+</Window>

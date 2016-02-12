@@ -1,0 +1,19 @@
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database\Database\bin\Debug\Database.dacpac
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database\Database\obj\Debug\Database.dll
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database\Database\obj\Debug\Database.pdb
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database\Database\bin\Debug\Database.dll
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database\Database\bin\Debug\Database.pdb
+C:\Users\Peter\Desktop\I4PRJ-SVN\root\Implementering\Database\Database\bin\Debug\Database.dacpac
+C:\Users\Peter\Desktop\I4PRJ-SVN\root\Implementering\Database\Database\bin\Debug\Database.dll
+C:\Users\Peter\Desktop\I4PRJ-SVN\root\Implementering\Database\Database\bin\Debug\Database.pdb
+C:\Users\Peter\Desktop\I4PRJ-SVN\root\Implementering\Database\Database\obj\Debug\Database.dll
+C:\Users\Peter\Desktop\I4PRJ-SVN\root\Implementering\Database\Database\obj\Debug\Database.pdb
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\bin\Debug\Database.dacpac
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\bin\Debug\Database.dll
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\bin\Debug\Database.pdb
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\obj\Debug\Database.dll
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\obj\Debug\Database.pdb
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\obj\Debug\Model.xml
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\obj\Debug\refactor.xml
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\obj\Debug\postdeploy.sql
+C:\Users\David\Box Sync\I4PRJ4\Gruppe 3\Database_localhost\Database\obj\Debug\predeploy.sql

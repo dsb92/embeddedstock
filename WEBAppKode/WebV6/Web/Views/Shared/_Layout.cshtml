@@ -1,0 +1,64 @@
+﻿@using System.Runtime.Remoting.Messaging
+@using System.Web.UI.WebControls
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - IHA Special Komponenter</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("../Images/IHA-Logo.png")" height="50" />
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-5 col-lg-6"><h2>Ingeni&oslash;rh&oslash;jskolen Aarhus</h2>
+                    </div>
+                    
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 col-md-5 col-lg-4"></div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "input-group" }))
+                        {
+                            @Html.TextBox("searchString", null, new { @class = "form-control", @placeholder = "Indtast Keywords..." })
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </span>
+                        }
+                    </div>
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div>
+                </div>
+
+           </div>
+        </div> 
+        
+        <div class="container body-content">
+        <br />
+            @RenderBody()
+            
+        <br/>   
+            <footer class="navbar navbar-fixed-bottom container">
+                
+                <hr />
+                <p>&copy; @DateTime.Now.Year - Ingeni&oslash;rh&oslash;jskolen Aarhus </p>
+            </footer>
+        </div>
+        
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

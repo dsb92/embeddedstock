@@ -1,0 +1,56 @@
+﻿<!--
+    Account/Reserve 
+    -->
+
+@using System.Activities.Expressions
+@model List<Web.Models.Component>
+           
+@{
+    ViewBag.Title = "Profil";
+}
+
+
+<div class="container">
+    @Html.ActionLink("Tilbage til Forsiden", "Index", "Home", null, new { @class = "btn btn-primary" })
+    <h2 class="sub-header">Liste over reservede komponenter</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Komponent ID</th>
+                    <th>Komponent Navn</th>
+                    <th>Komponent Kategori</th>
+                    <th>Component Nummer</th>
+                    <th>Røv</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelitem => item.ComponentID)</td>
+                        <td>@Html.DisplayFor(modelitem => item.ComponentName)</td>
+                        <td>@Html.DisplayFor(modelitem => item.Category)</td>
+                        <td>@Html.DisplayFor(modelitem => item.ComponentNumber)</td>
+                        <td>@Html.DisplayFor(modelitem => item.ComponentID)</td>
+                    </tr>
+                }
+                <tr>
+                    <td>123</td>
+                    <td>Hejhejhejhejhej</td>
+                    <td>Batman</td>
+                    <td>4321</td>
+                    <td>Røv</td>
+                </tr>
+                <tr>
+                    <td>123</td>
+                    <td>Hejhejhejhejhej</td>
+                    <td>Batman</td>
+                    <td>4321</td>
+                    <td>Røv</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<!--
+    Component/Index
+    -->
+
+@using System.Activities.Expressions
+@model  Web.Models.Component
+
+@{
+    ViewBag.Title = "Komponenter";
+    var availablequantity = ViewData["AvailableQuantity"] as int?;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="@Html.DisplayFor(model => model.Image)" class="img-responsive"/> <br/>
+            @Html.ActionLink("Tilbage", "Index", "Home", null, new { @class = "btn btn-primary" })
+        </div>
+        <div class="col-md-6">
+            <h3>@Html.DisplayFor(model => model.ComponentName) </h3>
+            <p>@Html.DisplayFor(model => model.ComponentInfo) </p>
+        </div>
+        <div class="col-md-3">
+            <p>Antal p&aring; lager: @Html.DisplayFor(quantity => availablequantity) </p>
+            @if (Session["User"] != null && availablequantity != null)
+            {
+                <button type="button" class="btn btn-success quantity" onclick="">Reserver &raquo;</button>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Kommentar fra Brugere</h4>
+            <hr/>
+            @* @foreach (comment in usercomments ){
+                
+        @Html.DisplayFor(model => model.ComponentInfo)
+            <hr/>
+        }*@
+            
+            <p>Bruger navn og dato? <br/>@Html.DisplayFor(model => model.ComponentInfo)</p> 
+            <hr/>
+            <p>Bruger navn og dato? <br />@Html.DisplayFor(model => model.ComponentInfo)</p>
+            <hr />
+            <p>Bruger navn og dato? <br />@Html.DisplayFor(model => model.ComponentInfo)</p>
+            <hr />
+            
+        </div>
+        <div class="col-md-2">
+            
+            <a href="@Html.DisplayFor(model => model.Datasheet)" target="_blank" class="btn btn-primary"> @Html.DisplayNameFor(model => model.Datasheet)</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<!--
+    Account/Reserve 
+    -->
+
+@using Web.Models
+           
+@{
+    ViewBag.Title = "Profil";
+    var viewDataReservedComponents = ViewData["ReservedComponents"] as List<Component>;
+    var viewDataLoanedComponents = ViewData["LoanedComponents"] as List<Component>;
+    var viewDataReserveLoanInfo = ViewData["ReservedLoanInformation"] as List<string>;
+    var viewDataLoanLoanInfo = ViewData["LoanedLoanInformation"] as List<string>;
+}
+
+
+<div class="container">
+    @Html.ActionLink("Tilbage til Forsiden", "Index", "Home", null, new { @class = "btn btn-primary" })
+    <h2 class="sub-header">Dine Reservationer</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>SerieNr.</th>
+                    <th>Navn</th>
+                    <th>Kategori</th>
+                    <th>Komponent Nummer</th>
+                    <th>Reservations Dato</th>
+                    <th>Fjern</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in viewDataReservedComponents)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelitem => item.SerieNr)</td>
+                        <td>@Html.DisplayFor(modelitem => item.ComponentName)</td>
+                        <td>@Html.DisplayFor(modelitem => item.Category)</td>
+                        <td>@Html.DisplayFor(modelitem => item.ComponentNumber)</td>
+                        <td>@Html.DisplayFor(modelitem => viewDataReserveLoanInfo[viewDataReservedComponents.IndexOf(item)])</td>
+                        <td><a class="fa fa-times" href='@Url.Action("Remove", "Reserve", item )'></a></td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h2 class="sub-header">Dine Udl&aring;n</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SerieNr.</th>
+                        <th>Navn</th>
+                        <th>Kategori</th>
+                        <th>Komponent Nummer</th>
+                        <th>AfleveringsDato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in viewDataLoanedComponents)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelitem => item.SerieNr)</td>
+                            <td>@Html.DisplayFor(modelitem => item.ComponentName)</td>
+                            <td>@Html.DisplayFor(modelitem => item.Category)</td>
+                            <td>@Html.DisplayFor(modelitem => item.ComponentNumber)</td>
+                            <td>@Html.DisplayFor(modelitem => viewDataLoanLoanInfo[viewDataLoanedComponents.IndexOf(item)])</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+
+        </div>
+</div>

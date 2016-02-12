@@ -1,0 +1,33 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Component]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Image in table [dbo].[Component] is currently  IMAGE NULL but is being changed to  VARCHAR (MAX)
+         NULL. There is no implicit or explicit conversion.
+       The type for column LoanDate in table [dbo].[LoanInformation] is currently  NVARCHAR (50) NULL but is being changed to 
+         DATETIME NULL. Data loss could occur.
+       The type for column ReturnDate in table [dbo].[LoanInformation] is currently  NVARCHAR (50) NULL but is being changed to
+          DATETIME NULL. Data loss could occur.
+
+** User actions
+     Table rebuild
+       [dbo].[Component] (Table)
+     Alter
+       [dbo].[LoanInformation] (Table)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_Component_ToUser] (Foreign Key)
+       [dbo].[FK_LoanInformation_ToComponent] (Foreign Key)
+     Create
+       [dbo].[FK_Component_ToUser] (Foreign Key)
+       [dbo].[FK_LoanInformation_ToComponent] (Foreign Key)
+
+The type for column Image in table [dbo].[Component] is currently  IMAGE NULL but is being changed to  VARCHAR (MAX) NULL. There is no implicit or explicit conversion.
+The type for column LoanDate in table [dbo].[LoanInformation] is currently  NVARCHAR (50) NULL but is being changed to  DATETIME NULL. Data loss could occur.
+The type for column ReturnDate in table [dbo].[LoanInformation] is currently  NVARCHAR (50) NULL but is being changed to  DATETIME NULL. Data loss could occur.
+

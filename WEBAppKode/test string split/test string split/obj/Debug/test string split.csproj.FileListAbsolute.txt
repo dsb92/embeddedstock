@@ -1,0 +1,6 @@
+C:\Users\Nikolaj\Desktop\Semesterprojekt 4\root\Implementering\WEBAppKode\test string split\test string split\bin\Debug\test string split.exe.config
+C:\Users\Nikolaj\Desktop\Semesterprojekt 4\root\Implementering\WEBAppKode\test string split\test string split\bin\Debug\test string split.exe
+C:\Users\Nikolaj\Desktop\Semesterprojekt 4\root\Implementering\WEBAppKode\test string split\test string split\bin\Debug\test string split.pdb
+C:\Users\Nikolaj\Desktop\Semesterprojekt 4\root\Implementering\WEBAppKode\test string split\test string split\obj\Debug\test string split.csprojResolveAssemblyReference.cache
+C:\Users\Nikolaj\Desktop\Semesterprojekt 4\root\Implementering\WEBAppKode\test string split\test string split\obj\Debug\test string split.exe
+C:\Users\Nikolaj\Desktop\Semesterprojekt 4\root\Implementering\WEBAppKode\test string split\test string split\obj\Debug\test string split.pdb

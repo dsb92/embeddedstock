@@ -1,0 +1,3 @@
+AUTO-INCREMENT!
+Nar man sletter en tuple, kan man sa fa den n?ste indsatte tuple til at fa dens v?rdi
+i stedet for at inkrementere til den n?ste i r?kken.

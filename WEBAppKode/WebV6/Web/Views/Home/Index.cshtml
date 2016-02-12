@@ -1,0 +1,118 @@
+<!-- 
+    Home/Index
+    -->
+
+@using System.Diagnostics.Eventing.Reader
+@using System.Web.UI.WebControls
+@using MoreLinq
+@using Web.Models
+@model List<Web.Models.Component>
+
+@{
+    ViewBag.Title = "Index";
+    var viewDataCategories = ViewData["Categories"] as List<string>;
+    var viewDataAvailableQuantity = ViewData["AvailableQuantity"] as List<int>;
+    var viewDataNumberOfPages = ViewData["NumberOfPages"] as int?;
+    
+}
+
+<div class="row row-offcanvas-right row-offcanvas">
+
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="list-group">
+                <span class="label label-primary">Kategorier</span>
+                @foreach (var category in viewDataCategories)
+                {
+                    @Html.ActionLink(category, "Index", "Home", new { @class = "list-group-item", @href = "?category=" + category })
+                }
+           
+                <br />
+                <p id="BackToMyPage"></p> <!--Jquery - Back to Index, Home-->
+            </div> <!-- /list-group-->
+        </div> <!-- /div-->
+ <div class="col-xs-8 col-sm-8 col-lg-9">
+
+                @foreach (var item in Model)
+        {
+            <div class="row">
+                <hr />
+                <div class="col-xs-2 col-sm-3 col-md-3">
+                    @if (item.Image == "")
+                    {
+                        <img src="../../Images/imageNotFound.jpg" class="img-responsive" />
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Component", new {componentid = item.ComponentID })">
+                            <img src="@Html.DisplayFor(modelItem => item.Image)" class="img-responsive" />
+                        </a>
+                    }
+
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <h3>@Html.DisplayFor(modelItem => item.ComponentName) </h3>
+                    <p>@Html.DisplayFor(modelItem => item.ComponentInfo) </p>
+
+                    @if (item.ComponentID != 0)
+                    {
+                        @Html.ActionLink("Se mere", "Index", "Component", new { componentid = item.ComponentID }, new {@class="label label-primary"})
+
+                    }
+                </div>
+
+                <div class="col-xs-3 col-md-3 col-lg-3">
+                    @if (item.ComponentID != 0)
+                    {
+                        <p>Antal Tilg&aelig;ngelige: @Html.DisplayFor(quantity => viewDataAvailableQuantity[Model.IndexOf(item)])</p>
+                        if (Session["User"] != null && viewDataAvailableQuantity[Model.IndexOf(item)] != 0)
+                        {
+                            @Html.ActionLink(HttpUtility.HtmlDecode("Reserver &raquo;"), "Index", "Reserve",
+                                     new { componentName = item.ComponentName }, new { @class = "btn btn-success quantity" })
+                        }
+
+                    }
+                </div>
+            </div><!--/row-->
+        }
+    
+    @if (viewDataNumberOfPages > 1)
+    {
+        <ul class="pager">
+            <div class="col-xs-5">
+                @if (viewDataNumberOfPages > 1)
+                {
+                    <li class="previous">@Html.ActionLink(HttpUtility.HtmlDecode("&larr; Forrige Side"), "Index", "Home", new { @href = "?page=" + (viewDataNumberOfPages - 1) })</li>                  
+                }
+            </div>     
+            <div class="col-xs-1">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                {
+                    @Html.TextBox("page", null, new { @class = "form-control input-sm", @placeholder = @viewDataNumberOfPages })
+                }
+            </div>
+            <div class="col-xs-5"><li class=" next">@Html.ActionLink(HttpUtility.HtmlDecode("Næste Side &rarr;"), "Index", "Home", new { @href = "?page=" + (viewDataNumberOfPages + 1) })</li></div>
+
+        </ul>
+        
+    }
+   
+    </div><!--/span-->
+    </div><!-- /row-->
+    
+    <script type="text/javascript">
+        var url = window.location.href;
+        var params = url.split('?category=');
+        if (params[1] != null) {
+            document.getElementById('BackToMyPage').innerHTML = '@Html.ActionLink("Tilbage","Index", "Home", null, new {@class = "btn btn-primary"})';
+        }
+    </script>
+
+    <script type="text/javascript">
+        var url = window.location.href;
+        var params = url.split('?searchString=');
+        if (params[1] != null) {
+            document.getElementById('BackToMyPage').innerHTML = '@Html.ActionLink("Tilbage", "Index", "Home", null, new { @class = "btn btn-primary" })';
+        }
+    </script>
+

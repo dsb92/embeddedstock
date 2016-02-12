@@ -1,0 +1,53 @@
+﻿@using System.Runtime.Remoting.Messaging
+@using System.Web.UI.WebControls
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - IHA Special Komponenter</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("../Images/IHA-Logo.png")" height="50"/>
+                        </a>
+                    </div>
+                    <div class="col-md-6"><h2>Ingeni&oslash;rh&oslash;jskolen Aarhus</h2>
+                        
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                    {
+                        <p>
+                            <input type="submit" value="S&oslash;g" class="btn btn-default" style="float: right; margin-right: 40%;" >
+                            @Html.TextBox("searchString", null, new { @class = "form-control", @placeholder = "Indtast Keywords..." }) 
+                        </p> 
+                    }
+                  
+                    </div>
+                </div>
+                
+            </div>
+        </div> 
+        
+        <div class="container body-content">
+      
+            @RenderBody()
+            
+            
+            <footer class="navbar navbar-fixed-bottom container">
+                
+                <hr />
+                <p>&copy; @DateTime.Now.Year - Ingeni&oslash;rh&oslash;jskolen Aarhus</p>
+            </footer>
+        </div>
+        
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

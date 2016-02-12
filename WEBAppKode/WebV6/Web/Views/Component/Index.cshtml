@@ -1,0 +1,76 @@
+<!--
+    Component/Index
+    -->
+
+@using System.Activities.Expressions
+@model  Web.Models.Component
+
+@{
+    ViewBag.Title = "Komponenter";
+    var availablequantity = ViewData["AvailableQuantity"] as int?;
+    var userComments = ViewData["UserComments"] as List<MvcHtmlString>;
+    var datasheet = @Html.DisplayFor(model => model.Datasheet).ToHtmlString();
+    var manulink = @Html.DisplayFor(model => model.ManufacturerLink).ToHtmlString();
+    const string httpstring = "http://";
+    const string httpsstring = "https://";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <img src="@Html.DisplayFor(model => model.Image)" class="img-responsive"/> <br/>
+            @Html.ActionLink("Tilbage", "Index", "Home", null, new { @class = "btn btn-primary" })
+            
+            @if (datasheet.Contains(httpstring) || datasheet.Contains(httpsstring))
+            {
+                <a href="@datasheet" target="_blank" class="btn btn-primary"> @Html.DisplayNameFor(model => model.Datasheet)</a>
+            }
+            else
+            {
+                <a href="http://@datasheet" target="_blank" class="btn btn-primary"> @Html.DisplayNameFor(model => model.Datasheet)</a>
+            }
+            
+            @if (manulink.Contains(httpstring) || manulink.Contains(httpsstring))
+            {
+                <a href="@manulink" target="_blank" class="btn btn-primary"> Info </a>
+            }
+            else
+            {
+                <a href="http://@manulink" target="_blank" class="btn btn-primary"> Info</a>
+            }
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h3>@Html.DisplayFor(model => model.ComponentName) </h3>
+            <p>@Html.DisplayFor(model => model.ComponentInfo) </p>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <p>Antal p&aring; lager: @Html.DisplayFor(quantity => availablequantity) </p>
+            @if (Session["User"] != null && availablequantity != null)
+            {
+                @Html.ActionLink(HttpUtility.HtmlDecode("Reserver &raquo;"), "Index", "Reserve" ,
+                                     new {componentName = Model.ComponentName}, new { @class = "btn btn-success quantity" })
+            }
+           
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <h4>Kommentar fra Brugere</h4>
+            <hr/>
+             @foreach (var comment in userComments ){
+                
+        @comment
+            <hr/>
+        }
+            
+             
+            
+            
+            
+        </div>
+        @*<div class="col-md-2">
+            
+            
+           </div>*@
+    </div>
+</div>

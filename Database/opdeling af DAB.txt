@@ -1,0 +1,16 @@
+Database raport skrivning:
+
+CREATE, UPDATE, DELETE										- David
+
+GetComponents(List<string> keywords) 						- Peter K.
+LoanTimeExceeded()											- David
+ComponentReservation(string cName, string studienumber)		- Peter K.
+CheckReservations()											- Peter K.
+HelperFunction()											- David
+
+CREATE, UPDATE, DELETE
+
+GetLoanedComponentFromStudentId(string id)					- Thomas
+GetReservedComponentFromStudentId(string id)				- Thomas
+RemoveReservation(int compId)								- Thomas
+

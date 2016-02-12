@@ -1,0 +1,28 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Component]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Image in table [dbo].[Component] is currently  NVARCHAR (MAX) NULL but is being changed to  VARCHAR
+         (MAX) NULL. Data loss could occur.
+
+** User actions
+     Table rebuild
+       [dbo].[Component] (Table)
+     Create
+       [dbo].[LoanInformation] (Table)
+       [dbo].[FK_LoanInformation_ToComponent] (Foreign Key)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_Component_ToUser] (Foreign Key)
+     Create
+       [dbo].[FK_Component_ToUser] (Foreign Key)
+
+The type for column Image in table [dbo].[Component] is currently  NVARCHAR (MAX) NULL but is being changed to  VARCHAR (MAX) NULL. Data loss could occur.
+Vardecimal support is enabled for the database but disabled for the project. See SQL Server Books Online for more information about how to turn off vardecimal support.
+The project and target databases have different collation settings. Deployment errors might occur.
+

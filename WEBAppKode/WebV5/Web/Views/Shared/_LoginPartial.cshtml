@@ -1,0 +1,18 @@
+﻿@if (@Session["User"] != null)
+{
+    <text>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            
+            <p>Logged in as: </p>
+            <p>@Html.ActionLink(@Session["User"].ToString(), "Reserve", "Account")</p> 
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+    </text>
+}
+else
+{
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+}
+

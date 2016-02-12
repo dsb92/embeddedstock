@@ -1,0 +1,83 @@
+<!-- 
+    Home/Index
+    -->
+
+@using System.Diagnostics.Eventing.Reader
+@using MoreLinq
+@using Web.Models
+@model List<Web.Models.Component>
+
+@{
+    ViewBag.Title = "Index";
+    var viewDataCategories = ViewData["Categories"] as List<string>;
+    var viewDataAvailableQuantity = ViewData["AvailableQuantity"] as List<int>;
+    var viewDataNumberOfPages = ViewData["NumberOfPages"] as int?;
+    
+}
+
+<div class="container">
+    <div class="row row-offcanvas-left row-offcanvas">
+    
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas"  role="navigation">
+            <div class="list-group">
+                <p>Kategorier</p>
+                @foreach (var category in viewDataCategories)
+                {
+                    @Html.ActionLink(category, "Index", "Home", new { @class = "list-group-item", @href = "?category=" + category })
+                }
+                <br />
+                <p id="BackToMyPage"></p> <!--Jquery - Back to Index, Home-->
+            </div> <!-- /list-group-->
+        </div> <!-- /span-->
+       <div class="col-xs-12 col-sm-9">
+            
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <hr />
+                        <div class="col-md-3"><img src="@Html.DisplayFor(modelItem => item.Image)" class="img-responsive" /> </div>
+                        <div class="col-md-6">
+                            <h3>@Html.DisplayFor(modelItem => item.ComponentName) </h3>
+                            <p>@Html.DisplayFor(modelItem => item.ComponentInfo) </p>
+                           
+                            @if (item.ComponentID != 0)
+                            {
+                                @Html.ActionLink("Se mere", "Index", "Component", new {componentid = item.ComponentID}, null)
+
+                            }
+                        </div>
+           
+                        <div class="col-md-3">
+                            @if (item.ComponentID != 0)
+                            {
+                                <p class="quantity">Antal Tilg&aelig;ngelige: @Html.DisplayFor(quantity => viewDataAvailableQuantity[Model.IndexOf(item)])</p>
+                                 if (Session["User"] != null && viewDataAvailableQuantity[Model.IndexOf(item)] != null)
+                                 {
+                                     <button type="button" class="btn btn-success quantity" 
+                                     onclick="">Reserver &raquo;</button>
+                                 }
+                            }
+                        </div>              
+                    </div><!--/row-->
+                }
+            </div><!--/span-->
+        </div><!-- /row-->
+
+</div><!-- /Container-->
+
+<script type="text/javascript">
+    var url = window.location.href;
+    var params = url.split('?category=');
+    if (params[1] != null) {
+        document.getElementById('BackToMyPage').innerHTML = '@Html.ActionLink("Tilbage","Index", "Home", null, new {@class = "btn btn-primary"})';
+    }
+</script>
+
+<script type="text/javascript">
+    var url = window.location.href;
+    var params = url.split('?searchString=');
+    if (params[1] != null) {
+        document.getElementById('BackToMyPage').innerHTML = '@Html.ActionLink("Tilbage", "Index", "Home", null, new { @class = "btn btn-primary" })';
+    }
+</script>
+

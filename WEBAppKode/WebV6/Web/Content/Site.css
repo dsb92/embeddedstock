@@ -1,0 +1,118 @@
+body {
+    min-width: 500px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    min-width: 500px;
+    text-align: justify;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.quantity {
+    position: relative;
+    
+}
+
+/* forms */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+    fieldset legend {
+        display: none;
+    }
+
+    fieldset ol {
+        padding: 0;
+        list-style: none;
+    }
+
+        fieldset ol li {
+            padding-bottom: 5px;
+        }
+
+label {
+    display: block;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+label.checkbox {
+    display: inline;
+}
+
+.login input, textarea {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    color: #333;
+    font-size: 1.2em;
+    margin: 5px 0 6px 0;
+    padding: 5px;
+    width: 300px;
+}
+
+textarea {
+    font-family: inherit;
+    width: 500px;
+}
+
+    input:focus, textarea:focus {
+        border: 1px solid #7ac0da;
+    }
+    
+    input[type="checkbox"] {
+        background: transparent;
+        border: inherit;
+        width: auto;
+    }
+     
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*Test af opstilling*/
+.debug {  
+    border: 1px solid black;
+    text-align: justify;
+}
